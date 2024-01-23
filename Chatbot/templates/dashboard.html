@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Phone Chatbot</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+    }
+            .dashboard-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .dashboard-button:hover {
+            background-color: #45a049;
+        }
+
+
+    .container {
+        display: flex;
+        justify-content: center; /* Center the chatbox horizontally */
+        align-items: center; /* Center the chatbox vertically */
+        height: 100vh; /* Make the container take up the full height of the viewport */
+
+    }
+
+    .chatbox {
+        width: 90%; /* Set the width to 60% of the container */
+        max-width: 1200px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .chatbox-header {
+        background-color: #4CAF50;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        font-size: 18px;
+    }
+
+    .chatbox-body {
+        margin: 10px;
+        padding: 0;
+        max-height: 450px; /* Adjust the maximum height as needed */
+        overflow-y: auto;
+        text-align: left;
+        font-size: 15px;
+    }
+
+    .chatbox-input {
+        width: calc(100% - 20px); /* Adjusted width for padding */
+        padding: 10px;
+        border-radius: 3px;
+        border: 1px solid #000;
+        box-sizing: border-box;
+    }
+
+    .submit-button {
+        width: 60px; /* Adjusted width for padding */
+        height: 100%;
+        border: none;
+        background-color: #4CAF50;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .submit-button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+</head>
+<body>
+{#    <div>#}
+{#        <p>Total Number of Listings: {{ data.total_listings }}</p>#}
+{#        <p>Average Product Price: ${{ data.average_price }}</p>#}
+{#        <p>Average Ratings of Products: {{ data.average_ratings }}</p>#}
+{#        <p>Average Review Count per Product: {{ data.average_review_count }}</p>#}
+{#        <p>Total Number of Questions Asked: {{ data.total_questions }}</p>#}
+{#    </div>#}
+{##}
+{#    <div>#}
+{#        <h2>Top 5 Products</h2>#}
+{#        <ul>#}
+{#            {% for product in data.top_products %}#}
+{#                <li>#}
+{#                    <a href="{{ product.url }}" target="_blank">#}
+{#                        {{ product.name }} - {{ product.criteria_value }}#}
+{#                    </a>#}
+{#                </li>#}
+{#            {% endfor %}#}
+{#        </ul>#}
+{#    </div>#}
+{##}
+{#    <div class="container">#}
+{#        <div class="chatbox">#}
+{#            <div class="chatbox-header">#}
+{#                Mobile Phone Chatbot#}
+{#            </div>#}
+{#            <div class="chatbox-body" id="chatbox-body">#}
+{#                <!-- Display chat conversation here -->#}
+{#                {% if response %}#}
+{#                    <p>{{ response[0] }}</p>#}
+{#                    {% for message in response[1:] %}#}
+{#                        {% for item in message %}#}
+{#                            <ul>#}
+{#                                {% for elements in item %}#}
+{#                                    {% if loop.last %}#}
+{#                                        <li><a href="{{ elements }}">{{ elements }}</a></li>#}
+{#                                    {% else %}#}
+{#                                        <li>{{ elements }}</li>#}
+{#                                    {% endif %}#}
+{#                                {% endfor %}#}
+{#                            </ul>#}
+{#                        {% endfor %}#}
+{#                        <!-- Add an empty line between inner lists -->#}
+{#                    {% endfor %}#}
+{#                {% endif %}#}
+{#            </div>#}
+
+<button onclick="location.href='{{ url_for('dashboard') }}'" class="dashboard-button">Go to Dashboard</button>
+{#<button onclick="location.href='second.html'" class="dashboard-button">Go to Dashboard</button>#}
+
+    <div class="container">
+        <div class="chatbox">
+            <div class="chatbox-header">
+                Mobile Phone Chatbot
+            </div>
+            <div class="chatbox-body" id="chatbox-body">
+                <!-- Display chat conversation here -->
+                {% if response %}
+                    <p>{{ response[0] }}</p>
+                    <table border="1">
+                        <tr>
+                            <th>Product name</th>
+                            <th>Product Price</th>
+                            <th>Product rating</th>
+                            <th>Product score</th>
+                            <th>Product link</th>
+                        </tr>
+                    {% for message in response[1:] %}
+                        {% for item in message %}
+                            <tr>
+                                {% for elements in item %}
+                                    {% if loop.last %}
+
+                                        <td><a href="{{ elements }}">For more detail, click here</a></td>
+                                    {% else %}
+                                        <td>{{ elements }}</td>
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                        <!-- Add an empty line between inner lists -->
+                    {% endfor %}
+                    </table>
+                {% endif %}
+            </div>
+            <form method="post" action="/">
+                <input type="text" id="user_input" name="user_input" class="chatbox-input" placeholder="Ask me a question..." required>
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Phone Chatbot</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+    }
+
+
+    .container {
+        display: flex;
+        justify-content: center; /* Center the chatbox horizontally */
+        align-items: center; /* Center the chatbox vertically */
+        height: 100vh; /* Make the container take up the full height of the viewport */
+
+    }
+
+    .chatbox {
+        width: 90%; /* Set the width to 60% of the container */
+        max-width: 1200px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .chatbox-header {
+        background-color: #4c70af;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        font-size: 18px;
+    }
+
+    .chatbox-body {
+        margin: 10px;
+        padding: 0;
+        max-height: 450px; /* Adjust the maximum height as needed */
+        overflow-y: auto;
+        text-align: left;
+        font-size: 15px;
+    }
+
+    .dashboard_input {
+        width: calc(100% - 20px); /* Adjusted width for padding */
+        padding: 10px;
+        border-radius: 3px;
+        border: 1px solid #000;
+        box-sizing: border-box;
+    }
+
+    .submit-button {
+        width: 60px; /* Adjusted width for padding */
+        height: 100%;
+        border: none;
+        background-color: #4c70af;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .submit-button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+</head>
+<body>
+
+
+    <div class="container">
+        <div class="chatbox">
+            <div class="chatbox-header">
+                Mobile Phone Dashboard
+            </div>
+            <div class="chatbox-body" id="chatbox-body">
+                <!-- Display chat conversation here -->
+                {% if response %}
+                    <table border="1">
+                        <h2>Statistics</h2>
+                        <tr>
+                            <th>Total Listings</th>
+                            <th>Average Price</th>
+                            <th>Average rating</th>
+                            <th>Average review count</th>
+                            <th>Total Questions</th>
+                        </tr>
+                        <tr>
+                            <td>{{ response[0]['total_listings'] }}</td>
+                            <td>{{ response[0]['average_price'] }}</td>
+                            <td>{{ response[0]['average_ratings'] }}</td>
+                            <td>{{ response[0]['average_review_count'] }}</td>
+                            <td>{{ response[0]['total_questions'] }}</td>
+
+                        </tr>
+
+                    </table>
+                    <p><br></p>
+
+                    <h2>Top Products</h2>
+                    <table border="1">
+                        <tr>
+                            <th>Product name</th>
+                            <th>Product Price</th>
+                            <th>Product rating</th>
+                            <th>Product score</th>
+                            <th>Product link</th>
+                        </tr>
+
+                        {% for product in response[0]['top_products'] %}
+                            <tr>
+                                <td>{{ product['name'] }}</td>
+                                <td>{{ product['price'] }}</td>
+                                <td>{{ product['rating'] }}</td>
+                                <td>{{ product['score'] }}</td>
+                                <td><a href="{{ product['link'] }}">For more detail, click here</a></td>
+                            </tr>
+                        {% endfor %}
+
+                    </table>
+                {% endif %}
+            </div>
+            <form method="post" action="/dashboard">
+                <label for="dashboard_input">Enter Dashboard Data:</label>
+                <input type="text" id="dashboard_input" name="dashboard_input" class="dashboard_input" required>
+                <button type="submit" class="submit-button">Submit querry</button>
+            </form>
+
+
+        </div>
+    </div>
+</body>
+</html>

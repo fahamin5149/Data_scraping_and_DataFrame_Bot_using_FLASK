@@ -1,0 +1,27 @@
+1:all phone between ___ and ____ price range
+2:Best phone between ___ and ____ price range
+3:phone between ___ and ____ price range and atleast _ rating and _ brand (both can be run separately)
+4:show me the best smartphone
+5:show me all phones of a ___ brand
+6:show me best phone of ____ brand
+7:show me phone of ____ brand with atleast 4 rating
+8:recommend me a good phone
+9:show me all the phone under ____ price range
+10:show me the best phone under ___ price range
+11:show me phones under ____ price range with atleast 5 rating and samsung brand (can be asked separately)
+12:show me all the phone above____ price range
+13:show me the best phone above___ price range
+14:show me phones above____ price range with atleast 5 rating and samsung brand (can be asked separately)
+15:suggest me a budget friendly phone
+16:suggest me an expensive phone
+17:find me a good camera phone
+18:find me a phone with atleast ___ camera
+19:find me a phone with 5g network
+20:find me highest rated phones
+21:find me phones with positive feedback
+22:find me phones with atleast __ review score
+23:find me phones with atleast ___ rating
+24:show all the details of ________ id
+25:tell me about the model ________
+26:tell me about specification of model _________
+27:find me phone with atleast ____ specification (memory etc)
